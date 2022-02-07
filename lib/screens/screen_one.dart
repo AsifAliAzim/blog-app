@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:jmm_task/helper/authentication_helper.dart';
 import 'package:jmm_task/screens/authentication_screen.dart';
 
 import '../widgets/part_two.dart'; //dont remove it!
@@ -65,7 +66,8 @@ class _ScreenOneState extends State<ScreenOne> {
     return Scaffold(
       floatingActionButton: RawMaterialButton(
         onLongPress: () {
-          FirebaseAuth.instance.signOut();
+          AuthenticationHelper().signOut();
+          setState(() {});
         },
         onPressed: () {
           Navigator.of(context).pushNamed(NewBlogScrren.routeName);

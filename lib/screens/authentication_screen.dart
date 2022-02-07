@@ -44,17 +44,17 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   //   }
   // }
 
-  Future<void> _loggingIn(
+  Future<void> _submitLoginForm(
     String email,
     String password,
     BuildContext ctx,
   ) async {
     //AuthResule.......UserCredential
     UserCredential authResult;
-    UserCredential userCredential;
+    // UserCredential userCredential;
 
     try {
-      userCredential = (await _auth.signInWithEmailAndPassword(
+      authResult = (await _auth.signInWithEmailAndPassword(
         email: email.trim(),
         password: password.trim(),
       ));
@@ -133,7 +133,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
               ),
             ),
             LoginPasswordForm(
-              _loggingIn,
+              _submitLoginForm,
               _isLoading,
             ),
             SizedBox(

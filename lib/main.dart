@@ -6,8 +6,6 @@ import './screens/authentication_screen.dart';
 import './screens/sign_in_screen.dart';
 import './screens/screen_one.dart';
 import './screens/new_blogs_screen.dart';
-// import './screens/blog_detail_screen.dart';
-import './screens/authentication_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,25 +21,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      // home: AuthenticationScreen(),
-      home: ScreenOne(),
-      //     StreamBuilder<User?>(
-      //   //.onAuthStateChanged...........authStateChanges()
-      //   stream: FirebaseAuth.instance.authStateChanges(),
-      //   // stream: login(),
-
-      //   builder: (context, userSnapshot) {
-      //     if (userSnapshot.hasError) {
-      //       print(userSnapshot.error);
-      //     }
-      //     if (userSnapshot.hasData) {
-      //       // print(userSnapshot.data);
-      //       // print("its workings");
-      //       ScreenOne();
-      //     }
-      //     return AuthenticationScreen();
-      //   },
-      // ),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, userSnapshot) {
+          if (userSnapshot.hasError) {
+            print(userSnapshot.error);
+          }
+          if (userSnapshot.hasData) {
+            ScreenOne();
+          }
+          return AuthenticationScreen();
+        },
+      ),
       routes: {
         AuthenticationScreen.routeName: (ctx) => AuthenticationScreen(),
         SigninScreen.routeName: (ctx) => SigninScreen(),
@@ -50,20 +41,4 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-
-  // login() async {
-  //   try {
-  //     UserCredential userCredential = await FirebaseAuth.instance
-  //         .signInWithEmailAndPassword(
-  //             email: "barry.allen@example.com",
-  //             password: "SuperSecretPassword!");
-  //   } on FirebaseAuthException catch (e) {
-  //     print(e);
-  //     if (e.code == 'user-not-found') {
-  //       print('No user found for that email.');
-  //     } else if (e.code == 'wrong-password') {
-  //       print('Wrong password provided for that user.');
-  //     }
-  //   }
-  // }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jmm_task/screens/screen_one.dart';
 import 'package:jmm_task/screens/sign_in_screen.dart';
 
+import '../helper/authentication_helper.dart';
+
 class LoginPasswordForm extends StatefulWidget {
   LoginPasswordForm(
     this.submitFn,
@@ -25,11 +27,14 @@ class _LoginPasswordFormState extends State<LoginPasswordForm> {
 
   double deviceWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
+  final useremail = TextEditingController();
+  final userpassword = TextEditingController();
+
   bool _secureText = true;
 
   final _formKey = GlobalKey<FormState>();
-  String? _userEmail;
-  String? _userPassword;
+  String _userEmail = '';
+  String _userPassword = '';
 
   void _Login() {
     final isValid = _formKey.currentState!.validate();
@@ -38,15 +43,23 @@ class _LoginPasswordFormState extends State<LoginPasswordForm> {
 
     if (isValid) {
       _formKey.currentState!.save();
+
       widget.submitFn(
-        _userEmail!.trim(),
-        _userPassword!.trim(),
+        _userEmail.trim(),
+        _userPassword.trim(),
         context,
       );
-      // print(_userEmail);
-      // print(_userPassword);
+      print(_userEmail);
+      print(_userPassword);
       //can sent our authentication request to firebase here
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    useremail.dispose();
+    userpassword.dispose();
   }
 
   @override
@@ -74,6 +87,7 @@ class _LoginPasswordFormState extends State<LoginPasswordForm> {
             SizedBox(
               height: deviceHeight(context) * 0.065,
               child: TextFormField(
+                controller: useremail,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !value.contains('@') ||
@@ -110,6 +124,7 @@ class _LoginPasswordFormState extends State<LoginPasswordForm> {
             SizedBox(
               height: deviceHeight(context) * 0.065,
               child: TextFormField(
+                controller: userpassword,
                 validator: (value) {
                   if (value!.isEmpty || value.length < 7) {
                     return 'Password must be atleast seven characters long.';
@@ -190,7 +205,28 @@ class _LoginPasswordFormState extends State<LoginPasswordForm> {
             SizedBox(
               height: deviceHeight(context) * 0.065,
               child: GestureDetector(
-                onTap: _Login,
+                onTap: () {
+                  _userEmail = useremail.text.toString();
+                  _userPassword = userpassword.text.toString();
+                  AuthenticationHelper()
+                      .signIn(
+                          email: _userEmail.trim(),
+                          password: _userPassword.trim())
+                      .then((result) {
+                    if (result == null) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => ScreenOne()));
+                    } else {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          result,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        backgroundColor: const Color(0xff0D638A),
+                      ));
+                    }
+                  });
+                },
                 child: Container(
                   child: const Center(
                     child: Text(
