@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jmm_task/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -22,27 +21,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
       MediaQuery.of(context).size.height;
 
   double deviceWidth(BuildContext context) => MediaQuery.of(context).size.width;
-
-  // Future<void> login(
-  //   String email,
-  //   String password,
-  //   BuildContext ctx,
-  // ) async {
-  //   try {
-  //     UserCredential userCredential =
-  //         await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: email.trim(),
-  //       password: password.trim(),
-  //     );
-  //   } on FirebaseAuthException catch (e) {
-  //     print(e);
-  //     if (e.code == 'user-not-found') {
-  //       print('No user found for that email.');
-  //     } else if (e.code == 'wrong-password') {
-  //       print('Wrong password provided for that user.');
-  //     }
-  //   }
-  // }
 
   Future<void> _submitLoginForm(
     String email,

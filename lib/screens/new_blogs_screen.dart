@@ -11,11 +11,13 @@ class NewBlogScrren extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF),
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          NewBlogScreenHeader(),
-          NewBlogForm(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            NewBlogScreenHeader(),
+            NewBlogForm(),
+          ],
+        ),
       ),
     );
   }

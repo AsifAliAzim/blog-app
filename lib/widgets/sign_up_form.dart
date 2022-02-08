@@ -44,22 +44,6 @@ class _SignUpFormState extends State<SignUpForm> {
         _userPassword.trim(),
         context,
       );
-      // print(_userName);
-      // print(_userEmail);
-      // print(_userPassword);
-
-      // Scaffold.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text(
-      //       'Sign up successfully !',
-      //     ),
-      //     backgroundColor: Color(0xff0D638A),
-      //     duration: Duration(seconds: 2),
-      //   ),
-      // );
-
-      // Navigator.of(context).pop();
-      //can sent our authentication request to firebase here
     }
   }
 

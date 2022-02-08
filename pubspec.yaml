@@ -11,9 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  font_awesome_flutter: ^9.2.0
-  shimmer: ^2.0.0
-  animated_bottom_navigation_bar: ^0.3.2
   dotted_border: ^2.0.0+2
   intl: ^0.17.0
   flutter_slidable: ^1.2.0
@@ -22,6 +19,8 @@ dependencies:
   firebase_auth: ^3.3.5
   image_picker: ^0.8.4+5
   firebase_storage: ^10.2.6
+  file_picker: ^4.3.3
+  
 
 dev_dependencies:
   flutter_test:

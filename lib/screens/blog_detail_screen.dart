@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:jmm_task/customization/remove_scroll_glow.dart';
 
 class BlogDetailScreen extends StatelessWidget {
-  DateFormat date;
+  String date;
   String title;
   String description;
   String image;
@@ -100,7 +100,7 @@ class BlogDetailScreen extends StatelessWidget {
                         left: deviceWidth(context) * 0.03,
                       ),
                       child: Text(
-                        date.format(DateTime.now()),
+                        date,
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontSize: 14,

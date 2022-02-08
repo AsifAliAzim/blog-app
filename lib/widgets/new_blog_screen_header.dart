@@ -10,7 +10,6 @@ class NewBlogScreenHeader extends StatelessWidget {
 
     return Container(
       height: deviceHeight(context) * 0.17,
-      // color: Colors.red,
       child: Padding(
         padding: EdgeInsets.only(
           left: deviceWidth(context) * 0.07,

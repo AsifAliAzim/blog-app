@@ -13,50 +13,35 @@ class HomeScreenHeader extends StatelessWidget {
       // color: Colors.red,
       child: Padding(
         padding: EdgeInsets.only(
-          left: deviceWidth(context) * 0.07,
+          left: deviceWidth(context) * 0.02,
           right: deviceWidth(context) * 0.07,
+          top: deviceHeight(context) * 0.02,
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: deviceHeight(context) * 0.065,
-                ),
-                const Text(
+            const Expanded(
+              flex: 3,
+              child: ListTile(
+                title: Text(
                   'My Blogs    ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
                   ),
                 ),
-                const Text(
+                subtitle: Text(
                   'Create and post blogs',
                   style: TextStyle(
                     fontSize: 15,
                     color: Color(0xff474747),
                   ),
                 ),
-              ],
+              ),
             ),
-            Spacer(),
-            Column(
-              children: [
-                SizedBox(
-                  height: deviceHeight(context) * 0.087,
-                ),
-                const Icon(
-                  Icons.circle,
-                  size: 12,
-                ),
-              ],
-            ),
-            const Text(
-              'blog',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color(0xff0D638A),
-                fontSize: 29,
+            Expanded(
+              child: Image.asset(
+                'assets/images/Component 14 – 1.png',
               ),
             ),
           ],
